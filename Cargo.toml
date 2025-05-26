@@ -1,0 +1,11 @@
+[package]
+name = "ignite_rust_example"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ignite-rs = "0.1.0"
+ignite-rs_derive = "0.1.0" # This is crucial for #[derive(IgniteObj)]
+serde = { version = "1.0", features = ["derive"] } # Still needed for general serialization/deserialization
+tokio = { version = "1", features = ["full"] } # For async operations, often needed with thin clients
+
