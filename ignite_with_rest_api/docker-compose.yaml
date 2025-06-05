@@ -1,0 +1,16 @@
+# Description: Docker Compose file for Apache Ignite with REST and JSON support
+# Usage: Run `docker-compose up -d` to start the Ignite service
+version: "3.8"
+services:
+  ignite:
+    image: apacheignite/ignite:2.17.0-arm64
+    container_name: ignite
+    ports:
+      - "8080:8080"
+      - "47500:47500"
+    volumes:
+      - ./ignite-rest-config.xml:/opt/ignite/apache-ignite/config/config-file.xml
+    environment:
+      CONFIG_URI: /opt/ignite/apache-ignite/config/config-file.xml
+      OPTION_LIBS: ignite-rest-http,ignite-json
+    restart: unless-stopped

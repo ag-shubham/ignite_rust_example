@@ -5,25 +5,16 @@
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean abstract="true" id="ignite.cfg" class="org.apache.ignite.configuration.IgniteConfiguration">
-        <property name="clientMode" value="false"/> <property name="restConfiguration">
-            <bean class="org.apache.ignite.configuration.RestConfiguration">
-                <property name="allEndpoints" value="true"/>
-            </bean>
-        </property>
-
-        <property name="discoverySpi">
-            <bean class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
-                <property name="ipFinder">
-                    <bean class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
-                        <property name="addresses">
-                            <list>
-                                <value>127.0.0.1:47500..47509</value>
-                                <value>localhost:47500..47509</value>
-                            </list>
-                        </property>
-                    </bean>
-                </property>
+    <bean class="org.apache.ignite.configuration.IgniteConfiguration">
+        <property name="cacheConfiguration">
+            <bean class="org.apache.ignite.configuration.CacheConfiguration">
+                <property name="name" value="PersonCache"/>
+                <!-- <property name="cacheMode" value="PARTITIONED"/>
+                <property name="backups" value="2"/>
+                <property name="rebalanceMode" value="SYNC"/>
+                <property name="writeSynchronizationMode" value="FULL_SYNC"/>
+                <property name="partitionLossPolicy" value="READ_ONLY_SAFE"/> -->
+                <!-- Other parameters -->
             </bean>
         </property>
     </bean>
